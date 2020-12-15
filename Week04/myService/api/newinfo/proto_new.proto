@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package newinfo;
+
+
+message NewId {
+    int32 newid = 1;
+}
+
+message NewIds {
+    repeated int32 news = 1;
+}
+
+message NewBeginAndEnd {
+    int64 begin = 1;
+    int64 end = 2;
+}
+
+message NewInfo {
+    int32 id     =1;
+    string game  =2;
+    string title =3;
+    string description =4;
+    string icon =5;
+    string hot_icon =6;
+    string source =7;
+    string content =8;
+    int64  time =9;
+}
+
+message NewArrayInfo {
+    repeated NewInfo newsInfo = 1;
+}
+
+
+service AskNews {
+    rpc AskOneNew(NewId) returns (NewInfo) {}
+    rpc AskNews(NewIds) returns (NewArrayInfo) {}
+    rpc AskNewBeginAndEnd(NewBeginAndEnd) returns (NewArrayInfo) {}
+    rpc CreateNews(NewInfo) returns (NewInfo) {}
+}

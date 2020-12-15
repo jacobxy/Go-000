@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package comment;
+
+
+message CommentId {
+    int32 commentId = 1;
+}
+
+message NewId {
+    repeated int32 newId = 1;
+}
+
+message CommentBeginAndEnd {
+    int64 begin = 1;
+    int64 end = 2;
+}
+
+message CommentInfo {
+    int32 id     =1;
+    int32 newId  =2;
+    string content =3;
+    int64  time =4;
+    string account = 5;
+}
+
+message CommentArrayInfo {
+    repeated CommentInfo commentInfo = 1;
+}
+
+
+service AskNews {
+    rpc AskOneComment(CommentId) returns (CommentInfo) {}
+    rpc AskComments(NewId) returns (CommentArrayInfo) {}
+    rpc CreateCommentInfo(CommentInfo) returns (CommentInfo) {}
+}
